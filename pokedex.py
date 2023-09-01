@@ -53,10 +53,7 @@ async def pokedex(event):
         weaknesses = None
     l = a["family"]["evolutionLine"]
     # ambiguous variable name 'l' flake8(E741)
-    if not l:
-        line = "None"
-    else:
-        line = ", ".join(map(str, l))
+    line = "None" if not l else ", ".join(map(str, l))
     gen = a["generation"]
     try:
         move1 = move[0]["move"]["name"]

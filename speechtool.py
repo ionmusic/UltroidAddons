@@ -66,7 +66,7 @@ async def _(event):
             "100k",
             "-vbr",
             "on",
-            required_file_name + ".opus",
+            f"{required_file_name}.opus",
         ]
         try:
             subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
@@ -74,14 +74,14 @@ async def _(event):
             await event.eor(str(exc))
         else:
             os.remove(required_file_name)
-            required_file_name = required_file_name + ".opus"
+            required_file_name += ".opus"
         end = datetime.now()
         ms = (end - start).seconds
         await event.reply(
             file=required_file_name,
         )
         os.remove(required_file_name)
-        await eod(event, "Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
+        await eod(event, f"Processed {text[:97]} ({lan}) in {ms} seconds!")
     except Exception as e:
         await event.eor(str(e))
 
@@ -93,7 +93,7 @@ async def speec_(e):
         return await eod(e, "`Reply to Audio-File..`")
     # Not Hard Checking File Types
     re = await reply.download_media()
-    fn = re + ".wav"
+    fn = f"{re}.wav"
     await bash(f'ffmpeg -i "{re}" -vn "{fn}"')
     with sr.AudioFile(fn) as source:
         audio = reco.record(source)

@@ -43,7 +43,7 @@ async def sticklet(event):
     font_file_ = glob("resources/fonts/*ttf")
     FONT_FILE = random.choice(font_file_)
     font = ImageFont.truetype(FONT_FILE, size=fontsize)
-    for i in range(10):
+    for _ in range(10):
         if not draw.multiline_textsize(sticktext, font=font) > (512, 512):
             break
         fontsize = 100
@@ -59,7 +59,7 @@ async def sticklet(event):
     await a.delete()
     await event.client.send_message(
         event.chat_id,
-        "{}".format(sticktext),
+        f"{sticktext}",
         file=image_stream,
         reply_to=event.message.reply_to_msg_id,
     )

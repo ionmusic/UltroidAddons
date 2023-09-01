@@ -25,10 +25,10 @@ from . import *
 async def _(event):
     input_str = event.pattern_match.group(1)
     as_document = None
-    if input_str == "image":
-        as_document = False
-    elif input_str == "file":
+    if input_str == "file":
         as_document = True
+    elif input_str == "image":
+        as_document = False
     xx = await event.eor("`Calculating ur Ultroid Server Speed. Please wait!`")
     start = datetime.now()
     s = speedtest.Speedtest()
@@ -71,7 +71,7 @@ async def _(event):
             await event.client.send_file(
                 event.chat_id,
                 speedtest_image,
-                caption="**SpeedTest** completed in {} seconds".format(ms),
+                caption=f"**SpeedTest** completed in {ms} seconds",
                 force_document=as_document,
                 reply_to=reply_msg_id,
                 allow_cache=False,
