@@ -52,13 +52,10 @@ async def _(event):
     if not input_str:
         await event.eor("`Give some url`")
         return
-    sample_url = "https://da.gd/s?url={}".format(input_str)
-    response_api = requests.get(sample_url).text
-    if response_api:
+    sample_url = f"https://da.gd/s?url={input_str}"
+    if response_api := requests.get(sample_url).text:
         await event.eor(
-            "**Shortened url**==> {}\n**Given url**==> {}.".format(
-                response_api, input_str
-            ),
+            f"**Shortened url**==> {response_api}\n**Given url**==> {input_str}."
         )
     else:
         await event.eor("`Something went wrong. Please try again Later.`")
@@ -92,7 +89,7 @@ async def make_logog(ult):
     if not match and (reply and reply.text):
         match = reply.text
     else:
-        return await msg.edit(f"`Provide a name to make logo...`")
+        return await msg.edit("`Provide a name to make logo...`")
     first, last = "", ""
     if len(match.split()) >= 2:
         first, last = match.split()[:2]

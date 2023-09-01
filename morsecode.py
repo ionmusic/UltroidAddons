@@ -23,9 +23,9 @@ async def mencode(event):
     text = event.pattern_match.group(1)
     if not text:
         return msg.edit("Please give a text!")
-    base_url = "https://apis.xditya.me/morse/encode?text=" + text
+    base_url = f"https://apis.xditya.me/morse/encode?text={text}"
     encoded = await async_searcher(base_url, re_content=False)
-    await msg.edit("**Encoded.**\n\n**Morse Code:** `{}`".format(encoded))
+    await msg.edit(f"**Encoded.**\n\n**Morse Code:** `{encoded}`")
 
 
 @ultroid_cmd(pattern="mdecode ?(.*)")
@@ -34,6 +34,6 @@ async def mencode(event):
     text = event.pattern_match.group(1)
     if not text:
         return await msg.edit("Please give a text!")
-    base_url = "https://apis.xditya.me/morse/decode?text=" + text
+    base_url = f"https://apis.xditya.me/morse/decode?text={text}"
     encoded = await async_searcher(base_url, re_content=False)
-    await msg.edit("**Decoded.**\n\n**Message:** `{}`".format(encoded))
+    await msg.edit(f"**Decoded.**\n\n**Message:** `{encoded}`")

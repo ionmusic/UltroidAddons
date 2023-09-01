@@ -128,7 +128,9 @@ async def _(event):
         "1HXclQumyRIRy9STTiHcTAHpSMM2mj5ZF/view?usp=sharing",
     ]
     ME = sub + LINKS[random.randrange(0, len(LINKS))]
-    MSG = "`pdf created click link below to download data\n\n"
-    MSG += " Don't worry only i can open this 😎😎.. If u don't"
+    MSG = (
+        "`pdf created click link below to download data\n\n"
+        + " Don't worry only i can open this 😎😎.. If u don't"
+    )
     MSG += f" Believe me, try to download` 🙂\n\n{ME}"
     await xx.edit(MSG)
